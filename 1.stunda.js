@@ -31,6 +31,7 @@ let attels = document.querySelector('.content img');
 // rakstīšana
 virsraksts.id  = "pirmais";
 attels.src = "https://picsum.photos/200";
+attels.alt = "mans attēls";
 saturaBloks.dataset.grozs = "pilns";
 
 // Nolasīšana
@@ -42,6 +43,9 @@ virsraksts.style.border = "2px solid red";
 virsraksts.style.fontSize = "50pt";
 attels.style.width = "400px";
 saturaBloks.style.backgroundColor = "#afafaf";
+
+
+
 
 
 
