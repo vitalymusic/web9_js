@@ -28,9 +28,20 @@ let attels = document.querySelector('.content img');
 
 // Elementu atribūtu lasīšana/rakstīšana
 
+// rakstīšana
 virsraksts.id  = "pirmais";
 attels.src = "https://picsum.photos/200";
 saturaBloks.dataset.grozs = "pilns";
+
+// Nolasīšana
+
+// alert(saturaBloks.dataset.grozs)
+
+// Elementu stilizēšana
+virsraksts.style.border = "2px solid red";
+virsraksts.style.fontSize = "50pt";
+attels.style.width = "400px";
+saturaBloks.style.backgroundColor = "#afafaf";
 
 
 
