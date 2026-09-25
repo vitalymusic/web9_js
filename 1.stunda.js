@@ -65,6 +65,17 @@ function mazaBilde(){
     attels.style.width = "10%";
 }
 
-attels.onClick = ()=>{lielaBilde()}
-attels.onDblClick = ()=>{mazaBilde()}
+// notikumi
+attels.onclick = ()=>{lielaBilde()}
+attels.ondblclick = ()=>{mazaBilde()}
+
+
+document.body.onkeyup = (event)=>{
+
+    if(event.code=="Space"){
+        document.body.classList.toggle('aktivs');
+    }
+    
+    console.log(event)
+}
 
