@@ -45,8 +45,14 @@ attels.style.width = "400px";
 saturaBloks.style.backgroundColor = "#afafaf";
 
 
+// virsraksts.classList.add('aktivs');
+
+saturaBloks.classList.replace('content','bistams')
 
 
+function parslegtKlasi(){
+    virsraksts.classList.toggle('aktivs')
+}
 
 
 
