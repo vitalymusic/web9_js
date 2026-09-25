@@ -51,9 +51,20 @@ saturaBloks.classList.replace('content','bistams')
 
 
 function parslegtKlasi(){
-    virsraksts.classList.toggle('aktivs')
+
+    virsraksts.classList.toggle('bistams')
+    document.body.classList.toggle('aktivs')
 }
 
 
+function lielaBilde(){
+    attels.style.width = "100%";
+}
 
+function mazaBilde(){
+    attels.style.width = "10%";
+}
+
+attels.onClick = ()=>{lielaBilde()}
+attels.onDblClick = ()=>{mazaBilde()}
 
