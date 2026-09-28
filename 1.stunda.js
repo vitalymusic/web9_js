@@ -75,7 +75,8 @@ document.body.onkeyup = (event)=>{
     if(event.code=="Space"){
         document.body.classList.toggle('aktivs');
     }
-    
-    console.log(event)
 }
 
+
+saturaBloks.innerHTML += "<li>";
+// window.oncopy = alert("Kopēt aizliegts");
