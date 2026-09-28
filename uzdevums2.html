@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="taskInput">
+    <button id="addBtn">Pievienot</button>
+
+
+    <ul id="taskList"></ul>
+
+    <script>
+        // ✅ Uzdevums 2 — Saraksta elementu pievienošana
+        // Mērķis: DOM elementu veidošana un pievienošana.
+        // HTML sākums:
+        // <input type="text" id="taskInput">
+        // <button id="addBtn">Pievienot</button>
+
+        // <ul id="taskList"></ul>
+        // Uzdevums:
+        // Izveidot vienkāršu uzdevumu sarakstu:
+        // 1.	Lietotājs ievada tekstu
+        // 2.	Nospiež pogu
+        // 3.	Sarakstā tiek pievienots jauns <li> elements ar šo tekstu
+        // 4.	Input lauks tiek notīrīts
+        // 5.	Ja ievade ir tukša — neko nepievienot
+        // Papildus (ja paliek laiks):
+        // •	katram elementam pievienot ❌ pogu dzēšanai
+        // Jāizmanto:
+        // •	createElement
+        // •	appendChild
+        // •	value
+        // •	trim()
+
+
+        
+
+       let inputField = document.querySelector('#taskInput'),
+            addBtn =    document.querySelector('#addBtn'),
+            taskList =  document.querySelector('#taskList')
+
+
+        addBtn.onclick = ()=>{
+
+
+             if(inputField.value.length>3){
+                let taskElement = document.createElement('li');
+                taskElement.textContent = inputField.value.trim();
+                let delBtn = document.createElement('button');
+                delBtn.classList.add('delBtn');
+                delBtn.textContent = "❌ Dzēst uzdevumu";
+                taskElement.appendChild(delBtn);
+                taskList.appendChild(taskElement);
+                inputField.value = "";
+
+             }   
+        }  
+        
+
+        let delButtons = document.querySelectorAll('.delBtn');
+
+        if(delButtons){
+            for(button of delButtons){
+                button.onclick = (e)=>{
+                    if(confirm('Tiešām dzēst?')){
+                        e.target.parentElement.remove();
+                    }   
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>
