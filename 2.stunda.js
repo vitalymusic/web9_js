@@ -46,11 +46,40 @@ for (bilde of bildes){
 
     figure.appendChild(attels);
     figure.appendChild(figCaption);
-    galerijasBloks.appendChild(figure)
+    galerijasBloks.appendChild(figure);
 
 }
 document.body.appendChild(galerijasBloks);
 
+let imageElements = document.querySelectorAll('.gallery img');
+
+for (image of imageElements){
+    image.ondblclick = (e)=>{
+        console.log(e.target.parentElement)
+        e.target.parentElement.remove();
+    }
+}
+
+// Citi elementu pievienošanas veidi
+
+let virsraksts2 = document.createElement('h3');
+virsraksts2.textContent = "Otrais virsraksts";
 
 
+// 'beforebegin': Before the targetElement itself.
+// 'afterbegin': Just inside the targetElement, before its first child.
+// 'beforeend': Just inside the targetElement, after its last child.
+// 'afterend': After the targetElement itself.
 
+
+galerijasBloks.insertAdjacentElement('afterend',virsraksts2);
+galerijasBloks.insertAdjacentHTML('beforebegin',`<div>Jauns Elements</div>`);
+document.body.moveBefore(virsraksts2,jaunsVirsraksts);
+
+for (image of imageElements){
+    image.nextElementSibling.style.textAlign = "center";
+}
+
+let galerija2 = galerijasBloks.cloneNode('deep');
+console.log(galerija2);
+document.body.appendChild(galerija2)
