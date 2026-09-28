@@ -56,14 +56,12 @@
                 taskElement.appendChild(delBtn);
                 taskList.appendChild(taskElement);
                 inputField.value = "";
-
+                enableDelete();
              }   
         }  
         
-
-        let delButtons = document.querySelectorAll('.delBtn');
-
-        if(delButtons){
+        function enableDelete(){
+            let delButtons = document.querySelectorAll('.delBtn');
             for(button of delButtons){
                 button.onclick = (e)=>{
                     if(confirm('Tiešām dzēst?')){
@@ -72,8 +70,7 @@
                 }
             }
         }
-
-
+            
     </script>
 </body>
 </html>
