@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Manipulāciju Uzdevums</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; }
+        .board { display: flex; gap: 20px; margin-top: 20px; }
+        .column { width: 400px; min-height: 400px; background: #f4f5f7; padding: 15px; border-radius: 8px; }
+        .card { background: white; padding: 10px; margin: 10px 0; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .card.urgent { border-left: 5px solid red; }
+        button { margin-left: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Mans Uzdevumu Dēlis</h1>
+    
+    <div>
+        <input type="text" id="task-input" placeholder="Ieraksti uzdevumu...">
+        <button id="add-btn">Pievienot</button>
+    </div>
+
+    <div class="board">
+        <div class="column" id="todo-column">
+            <h2>Darāmie darbi</h2>
+        </div>
+        
+        <div class="column" id="done-column">
+            <h2>Pabeigtie darbi</h2>
+        </div>
+    </div>
+
+    <script>
+        let addBtn = document.querySelector('#add-btn');
+        let todoColumn = document.querySelector('#todo-column');
+        let doneColumn = document.querySelector('#done-column');
+
+        addBtn.onclick = ()=>{
+            let taskInput = document.querySelector('#task-input');
+            let divEl = document.createElement('div');
+            divEl.classList.add('card');
+            let spanEl = document.createElement('span');
+            let attentionButton = document.createElement('button');
+            attentionButton.textContent = "Svarīgi";
+            let copyButton = document.createElement('button');
+            copyButton.textContent = "Dublēt";
+            let readyButton = document.createElement('button');
+            readyButton.textContent = "Gatavs";
+            divEl.appendChild(spanEl);
+            spanEl.textContent = taskInput.value;
+            divEl.appendChild(attentionButton);
+            divEl.appendChild(copyButton);
+            divEl.appendChild(readyButton);
+            todoColumn.appendChild(divEl);
+            taskInput.value = "";
+        }
+
+
+        todoColumn.addEventListener("click",(event)=>{
+               if(event.target.textContent == "Svarīgi"){
+                    console.log(event.target.parentElement);
+                    event.target.parentElement.classList.toggle('urgent');
+               }
+
+
+            //    cloneNode(true)
+                if(event.target.textContent == "Dublēt"){
+                    
+                    let taskCopyEl = event.target.parentElement.cloneNode(true);
+                    todoColumn.appendChild(taskCopyEl);
+
+               }
+
+                if(event.target.textContent == "Gatavs"){
+                    
+                    let taskEl = event.target.parentElement;
+                    let buttons = taskEl.querySelectorAll('button')
+                    console.log(buttons)
+
+                    for (button of buttons){
+                        button.remove()
+                    }
+
+                    let delButton = document.createElement('button');
+                    delButton.textContent = "Dzēst";
+
+                    taskEl.appendChild(delButton);
+                    delButton.onclick = (event)=>{
+                        event.target.parentElement.remove();
+                    }
+                    doneColumn.appendChild(taskEl);
+
+               }
+
+
+
+
+        })
+
+
+
+    </script>
+</body>
+</html>
