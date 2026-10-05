@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+
+    <h3>
+       <span lang="lv">Šis teksts ir rakstīts latviski</span> 
+       <span lang="eng">This text is written in English</span> 
+    </h3>
+    
+
+    <div class="grozs">
+
+    </div>
+
+
+
+    <script>
+        document.querySelector('h1').textContent = localStorage.getItem("username");
+
+        let grozs = JSON.parse(localStorage.getItem("grozs"));
+
+        for(item of grozs){
+            document.querySelector('.grozs').innerHTML+=`
+                <div class="item">
+                    <span>${item.nosaukums}</span>
+                    <span>${item.daudzums}</span>
+                    <span>${item.cena}</span>
+                </div>    
+            `
+        }
+
+        visiTeksti = document.querySelectorAll('span');
+        for(teksts of visiTeksti){
+            if(teksts.lang == localStorage.getItem("valoda")){
+                 teksts.style.display = "inline";
+            }else{
+                 teksts.style.display = "none";
+            }
+
+        }
+
+        
+
+
+    </script>
+</body>
+</html>
