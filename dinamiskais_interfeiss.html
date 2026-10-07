@@ -16,7 +16,7 @@
         }
 
         #scrollTopBtn{
-            /* display: none; */
+            display: none;
             position: fixed;
             bottom: 100px;
             right:50px;
@@ -63,6 +63,11 @@
 
 
     <script>
+
+        let scrollToTopBtn = document.querySelector('#scrollTopBtn');
+        let progressBar = document.querySelector('#progress-bar');
+        
+        // Tulkojumi
         const translations = {
                             LV: {
                                 title: "Sveicināti manā lapā!",
@@ -82,7 +87,7 @@
        function changeLanguage(lang){
             let h1 = document.querySelector('h1');
             let paragraphs = document.querySelectorAll('p');
-            let scrollToTopBtn = document.querySelector('#scrollTopBtn');
+            // let scrollToTopBtn = document.querySelector('#scrollTopBtn');
             h1.textContent = translations[lang].title;
             scrollToTopBtn.textContent = translations[lang].scrollTop;
             for(paragraph of paragraphs){
@@ -94,6 +99,8 @@
 
        if(localStorage.getItem('selectedLang')==null){
             changeLanguage("LV")
+       }else{
+            changeLanguage(localStorage.getItem('selectedLang'))
        }
        
        const langButtons = document.querySelectorAll('#LV, #EN');
@@ -104,6 +111,35 @@
         }
        }
 
+
+
+
+        //  Scroll to top
+           window.onscroll = ()=>{
+            // console.log(scrollY)
+
+            if(scrollY > 200){
+                scrollToTopBtn.style.display="inline"
+            }else{
+                scrollToTopBtn.style.display="none"
+            }
+
+            // =("window.scrollY" /("document.documentElement.scrollHeight" -"window.innerHeight" ))×100
+
+
+            let progress = (scrollY / (document.documentElement.scrollHeight - window.innerHeight))*100;
+
+            // console.log(Math.trunc(progress));
+            
+            progressBar.style.width = progress+"%";
+
+
+        }     
+
+        scrollToTopBtn.onclick = ()=>{
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+        
     </script>
 </body>
 </html>
