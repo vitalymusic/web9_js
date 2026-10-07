@@ -16,11 +16,11 @@
         }
 
         #scrollTopBtn{
-            display: none;
+            /* display: none; */
             position: fixed;
             bottom: 100px;
             right:50px;
-            width:50px;
+            width:150px;
             height:20px; 
             z-index: 1000;
 
@@ -35,14 +35,18 @@
             box-sizing: border-box;
         }
 
+        a{
+            cursor: pointer;
+        }
+
 
     </style>
 </head>
 <body>
     <header>
         <h1>Lapas nosaukums</h1>
-        <a href="">LV</a>
-        <a href="">EN</a>
+        <a  id="LV">LV</a>
+        <a  id="EN">EN</a>
     </header>
     <div id="progress-bar"></div>
     <main>
@@ -56,5 +60,50 @@
 
     <button id="scrollTopBtn">↑</button>
 
+
+
+    <script>
+        const translations = {
+                            LV: {
+                                title: "Sveicināti manā lapā!",
+                                description: "Šī ir parauga lapa, kurā var pārbaudīt valodas maiņu un ritināšanas efektus.",
+                                scrollTop: "Uz augšu"
+                            },
+                            EN: {
+                                title: "Welcome to my page!",
+                                description: "This is a sample page to demonstrate language switching and scroll effects.",
+                                scrollTop: "Back to top"
+                            }
+                        };
+
+
+
+
+       function changeLanguage(lang){
+            let h1 = document.querySelector('h1');
+            let paragraphs = document.querySelectorAll('p');
+            let scrollToTopBtn = document.querySelector('#scrollTopBtn');
+            h1.textContent = translations[lang].title;
+            scrollToTopBtn.textContent = translations[lang].scrollTop;
+            for(paragraph of paragraphs){
+                paragraph.textContent = translations[lang].description
+            }
+            localStorage.setItem('selectedLang', lang)
+       }     
+       
+
+       if(localStorage.getItem('selectedLang')==null){
+            changeLanguage("LV")
+       }
+       
+       const langButtons = document.querySelectorAll('#LV, #EN');
+
+       for(button of langButtons){
+        button.onclick = (e)=>{
+            changeLanguage(e.target.id);
+        }
+       }
+
+    </script>
 </body>
 </html>
