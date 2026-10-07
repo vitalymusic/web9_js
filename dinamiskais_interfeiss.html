@@ -124,15 +124,9 @@
                 scrollToTopBtn.style.display="none"
             }
 
-            // =("window.scrollY" /("document.documentElement.scrollHeight" -"window.innerHeight" ))×100
-
-
             let progress = (scrollY / (document.documentElement.scrollHeight - window.innerHeight))*100;
 
-            // console.log(Math.trunc(progress));
-            
             progressBar.style.width = progress+"%";
-
 
         }     
 
