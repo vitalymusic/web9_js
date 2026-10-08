@@ -31,3 +31,13 @@ setInterval(raditLaiku,1000)
 
 // console.log(laiks, new Date(pec4stundam), new Date(menesi3Atp));
 console.log(laikaObjekts);
+
+// Datuma objekta izveide no skaitļiem
+
+// Date.UTC(year)
+// Date.UTC(year, monthIndex)
+// Date.UTC(year, monthIndex, day)
+// Date.UTC(year, monthIndex, day, hours)
+// Date.UTC(year, monthIndex, day, hours, minutes)
+// Date.UTC(year, monthIndex, day, hours, minutes, seconds)
+// Date.UTC(year, monthIndex, day, hours, minutes, seconds, milliseconds)
