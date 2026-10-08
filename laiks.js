@@ -30,7 +30,7 @@ raditLaiku();
 setInterval(raditLaiku,1000)
 
 // console.log(laiks, new Date(pec4stundam), new Date(menesi3Atp));
-console.log(laikaObjekts);
+// console.log(laikaObjekts);
 
 // Datuma objekta izveide no skaitļiem
 
