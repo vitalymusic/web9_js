@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            display: block;
+        }
+
+        .hidden{
+            display: none;
+        }
+        .activeBtn{
+            background-color: rgb(146, 202, 250);
+        }
+        .tabBtns a{
+            padding: 10px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>  
+    <div class="tabs">
+        <div class="tabBtns">
+            <a data-tab="tab1">Tab1</a>
+            <a data-tab="tab2">Tab2</a>
+            <a data-tab="tab3">Tab3</a>
+        </div>
+        <div class="tabContent">
+            <div id="tab1">
+                <h3>Pirmais saturs</h3>
+            </div>
+            <div id="tab2">
+                <h3>Otrais saturs</h3>
+            </div>
+            <div id="tab3">
+                <h3>Trešais saturs</h3>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    
+
+    <script>
+        let btns = document.querySelectorAll('.tabBtns a');
+        let tabContent = document.querySelectorAll('.tabContent div');
+
+
+        for(btn of btns){
+            btn.onclick = (e)=>{
+               for(btn of btns){
+                    btn.classList.remove('activeBtn');
+               }
+
+               for(tab of tabContent){
+                    tab.classList.add('hidden');
+                    tab.classList.remove('active');
+               }
+               e.target.classList.add('activeBtn');
+               let dataAttr = e.target.dataset.tab;
+               document.querySelector("#"+dataAttr).classList.replace('hidden','active')
+            }
+        }
+
+        btns[0].click();
+
+    </script>
+</body>
+</html>
