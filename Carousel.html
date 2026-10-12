@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karuselis</title>
+
+    <style>
+        .carousel{
+
+        }
+        .slide{
+            width:800px;
+            height: 400px;
+            margin: auto;
+            display:none;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            font-size: 40pt;
+
+        }
+
+        .slide:nth-child(2n){
+            background-color: rgb(139, 200, 253);
+        }
+         .slide:nth-child(2n+1){
+            background-color: rgb(12, 133, 239);
+        }
+
+        .active_slide{
+             display: flex;
+             animation:fade-in-top 1s cubic-bezier(.39,.575,.565,1.000) both
+        }
+        .slideBtns{
+            display: flex;
+            justify-content: center;
+            gap:20px;
+        }
+
+
+    @keyframes fade-in-top{0%{transform:translateY(-50px);opacity:0}100%{transform:translateY(0);opacity:1}}
+
+
+    #dialog1{
+        width:60%;
+        
+    }
+    ::backdrop{
+        background-color: #000000b3;
+    }
+
+    </style>
+</head>
+<body>
+    <button id="openDialogBtn">Open Dialog</button>
+
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide">Slide1</div>
+        <div class="slide">Slide2</div>
+        <div class="slide">Slide3</div>
+        <div class="slide">Slide4</div>
+      </div>
+      <div class="slideBtns">
+        <button>prev</button>
+        <button>next</button>
+      </div>
+    </div>
+
+
+    <!-- Modālais logs -->
+    <dialog id="dialog1">
+        <button type="button" id="close">Close dialog</button>
+        <h3>Modālais logs</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, tempore quas a amet itaque quae laudantium, neque in blanditiis sit excepturi animi harum reiciendis suscipit deleniti consequuntur! Rerum, inventore ipsum.</p>
+    </dialog>
+    <!-- Modālais logs -->
+
+    <script>
+        const slides = document.querySelectorAll('.slides .slide');
+        const slideBtns = document.querySelectorAll('.slideBtns button');
+        let slaidaNr = 0;
+
+
+        // Funkcija, kas parada noteiktu slaidu (numurs)
+        // Funkcija, kas parada nākamo slaidu
+        // Funkcija, kas parāda iepriekšējo slaidu
+
+        function showSlide(number){
+            for(slide of slides){
+                if(slide.classList.contains('active_slide')){
+                    slide.classList.remove('active_slide');
+                }
+            }
+            slides[number].classList.add('active_slide');
+
+        }
+
+        function nextSlide(){
+            slaidaNr ++;
+            if(slaidaNr > slides.length-1){slaidaNr = 0}
+            showSlide(slaidaNr);
+            // console.log(slaidaNr);
+        }
+
+
+         function prevSlide(){
+            slaidaNr --;
+            if(slaidaNr < 0) {slaidaNr = slides.length-1}
+            showSlide(slaidaNr);
+            // console.log(slaidaNr);
+        }
+
+        showSlide(slaidaNr);
+
+        slideBtns[0].onclick = ()=>{prevSlide()}
+        slideBtns[1].onclick = ()=>{nextSlide()}
+
+        setInterval(nextSlide,2000)
+
+
+        // Modālais logs
+        let openDialogBtn = document.querySelector('#openDialogBtn');
+        let dialog1 = document.querySelector('#dialog1');
+        let closeBtn = document.querySelector('#close');
+
+
+        openDialogBtn.onclick = ()=>{
+            dialog1.showModal();
+        }
+
+        closeBtn.onclick = ()=>{
+            dialog1.close();
+        }
+
+        // 1. Pievienot animācijas Dialoga parādīšanai
+        // 2. Uzlabot lai dialogs aizvēras pēc Escape taustiņa nospiešanas (Keyboard Events)
+        // 3. jaunais fails => Sakombinēt dialoglogu ar Tabu, lai vienā sadaļā ir Login Forma, otrajā sadaļā ir Reģistrācijas Forma   
+
+
+
+
+    </script>
+</body>
+</html>
