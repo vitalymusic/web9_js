@@ -20,54 +20,144 @@
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <form action="">
+                <form action="" novalidate>
                     <div class="mb-3">
                         <label for="name" class="form-label">Vārds</label>
                         <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
                             placeholder="" />
-                        <small id="helpId" class="form-text text-body-secondary">Help text</small>
+                        <small id="helpId" class="form-text text-body-secondary"></small>
                     </div>
                     <div class="mb-3">
                         <label for="surname" class="form-label">Uzvārds</label>
                         <input type="text" class="form-control" name="surname" id="surname" aria-describedby="helpId"
                             placeholder="" />
-                        <small id="helpId" class="form-text text-body-secondary">Help text</small>
+                        <small id="helpId" class="form-text text-body-secondary"></small>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Epasts</label>
                         <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId"
                             placeholder="abc@mail.com" />
-                        <small id="emailHelpId" class="form-text text-body-secondary">Help text</small>
+                        <small id="emailHelpId" class="form-text text-body-secondary"></small>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Jaunā parole</label>
                         <input type="password" class="form-control" name="password" id="password" placeholder="" />
+                         <small id="emailHelpId" class="form-text text-body-secondary"></small>
                     </div>
                     <div class="mb-3">
                         <label for="password_repeat" class="form-label">Atkārtot paroli</label>
                         <input type="password" class="form-control" name="password_repeat" id="password_repeat"
                             placeholder="" />
+                         <small id="emailHelpId" class="form-text text-body-secondary"></small>    
                     </div>
                     <button type="submit" class="btn btn-primary">
-                        Submit
+                        Reģistrēties
                     </button>
 
-
-
-
-
-
-
+                    <div class="alert theme-danger visually-hidden" role="alert">
+                         <p id="alert_text"></p>
+                    </div>
                 </form>
             </div>
             <div class="col-3"></div>
-
         </div>
 
     </div>
 
 
+    <script>
+        let form = document.querySelector('form');
+
+       
+
+        console.log(form[0]);
+
+        form.onsubmit = (event)=>{
+            event.preventDefault();
+            let errors = [];
+
+             console.log(event);
+
+             if(form[0].value.length <3){
+                let errorText = "Vārdam jābūt garākam par 3 simboliem";
+                errors.push(errorText);
+                form[0].classList.add('is-invalid');
+                form[0].nextElementSibling.textContent = errorText;
+             } else{
+                    form[0].classList.remove('is-invalid');
+                    form[0].nextElementSibling.textContent = "";
+             }  
+
+            if(form[1].value.length <3){
+                let errorText = "uzvārdam jābūt garākam par 3 simboliem";
+                errors.push(errorText);
+                form[1].classList.add('is-invalid');
+                form[1].nextElementSibling.textContent = errorText;
+             } else{
+                    form[1].classList.remove('is-invalid');
+                    form[1].nextElementSibling.textContent = "";
+             }  
+
+             if(!form[2].value.match(/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm)){
+                let errorText = "Epasts norādīts nepareizi";
+                errors.push(errorText);
+                form[2].classList.add('is-invalid');
+                form[2].nextElementSibling.textContent = errorText;
+             } else{
+                    form[2].classList.remove('is-invalid');
+                    form[2].nextElementSibling.textContent = "";
+             }  
+
+             if(!form[3].value.match(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/gm)){
+                let errorText = "Parole jābūt drošākai";
+                errors.push(errorText);
+                form[3].classList.add('is-invalid');
+                form[3].nextElementSibling.textContent = errorText;
+             } else{
+                    form[3].classList.remove('is-invalid');
+                    form[3].nextElementSibling.textContent = "";
+             }  
+
+              if(form[4].value !== form[3].value){
+                let errorText = "Paroles nesakrīt";
+                errors.push(errorText);
+                form[4].classList.add('is-invalid');
+                form[4].nextElementSibling.textContent = errorText;
+             } else{
+                    form[4].classList.remove('is-invalid');
+                    form[4].nextElementSibling.textContent = "";
+             } 
+
+
+            let erElem = document.querySelector('#alert_text');
+              if(errors){
+                erElem.innerHTML = "Jūsu formā ir konstatētas kļūdas. <br>Izlabojiet un mēģiniet vēlreiz!";
+                erElem.parentElement.classList.remove('visually-hidden')
+              } else{
+                erElem.innerHTML = "";
+                erElem.parentElement.classList.add('visually-hidden');
+                sendData(form);
+              } 
+              
+        }
+
+        function sendData(formElement){
+            let url = "https://jsonplaceholder.typicode.com/posts";
+
+            fetch(url,
+            {
+                method:"POST",
+                body: new FormData(formElement)
+            })
+                .then((resp)=>{ return resp.json()})
+                .then((atb)=>{console.log(atb)})
+
+
+
+        }
+
+    </script>
 
 
 
