@@ -129,9 +129,10 @@
                     form[4].nextElementSibling.textContent = "";
              } 
 
+             console.log(errors);
 
             let erElem = document.querySelector('#alert_text');
-              if(errors){
+              if(errors.length>0){
                 erElem.innerHTML = "Jūsu formā ir konstatētas kļūdas. <br>Izlabojiet un mēģiniet vēlreiz!";
                 erElem.parentElement.classList.remove('visually-hidden')
               } else{
@@ -143,7 +144,7 @@
         }
 
         function sendData(formElement){
-            let url = "https://jsonplaceholder.typicode.com/posts";
+            let url = "https://httpbin.org/post";
 
             fetch(url,
             {
