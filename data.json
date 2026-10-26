@@ -1,0 +1,32 @@
+[ 
+    {
+        "id":1,
+        "nosaukums":"Dators  Intel i5",
+        "cena":560,
+        "bilde":""
+    },
+    {
+        "id":2,
+        "nosaukums":"Monitors DELL 27",
+        "cena":180,
+        "bilde":""
+    },
+    {
+        "id":3,
+        "nosaukums":"Klaviatūra un pele",
+        "cena":25,
+        "bilde":""
+    },
+    {
+        "id":4,
+        "nosaukums":"Datorgalds ",
+        "cena":195.90,
+        "bilde":""
+    },
+    {
+        "id":5,
+        "nosaukums":"Datorkrēsls ",
+        "cena":175.45,
+        "bilde":""
+    }
+]
