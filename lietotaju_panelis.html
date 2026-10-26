@@ -39,7 +39,7 @@
         <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
         <div class="modal fade" id="modal1" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
             role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitleId">
@@ -76,6 +76,7 @@
     <script>
         let tbody = document.querySelector('tbody');
         getUsers();
+        modalBody = document.querySelector('.modal-body');
         async function getUsers() {
             resp = await fetch('https://dummyjson.com/users');
             data = await resp.json();
@@ -109,15 +110,23 @@
                     userID = e.target.dataset.user_id;
                     resp = await fetch(`https://dummyjson.com/users/${userID}`);
                     userData = await resp.json();
-
-
-                    console.log(userData);
+                    modalBody.innerHTML = "";
+                    htmlOut = "";
+                    for(field in userData){
+                        htmlOut+=`
+                            <p>${field} - ${userData[field]}</p>
+                        `;
+                    }
+                    modalBody.innerHTML = htmlOut;
+                    myModal.show();
                 })
+
+                 
             }
 
 
 
-            // myModal.show()
+           
 
         }
         
