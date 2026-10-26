@@ -89,7 +89,7 @@
                             <td>${user.email}</td>
                             <td>${user.phone}</td>
                             <td>
-                                <button class="btn btn-primary" data-user-id="${user.id}">Skatīt</button>
+                                <button class="btn btn-primary openUser" data-user_id="${user.id}">Skatīt</button>
                             </td>
                         </tr>    
                     `;
@@ -99,10 +99,25 @@
          userModal();
         }
 
-        function userModal() {
+        async function userModal() {
             const myModal = new bootstrap.Modal(document.getElementById("modal1")
             );
-            myModal.show()
+            let userButtons = document.querySelectorAll('.openUser');
+
+            for(button of userButtons){
+                button.addEventListener("click", async(e)=>{
+                    userID = e.target.dataset.user_id;
+                    resp = await fetch(`https://dummyjson.com/users/${userID}`);
+                    userData = await resp.json();
+
+
+                    console.log(userData);
+                })
+            }
+
+
+
+            // myModal.show()
 
         }
         
