@@ -44,5 +44,32 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
+
+        <script>
+            let  tbody = document.querySelector('tbody');
+            getUsers();
+            async function getUsers(){
+                resp = await fetch('https://dummyjson.com/users');
+                data = await resp.json();
+                 tbody.innerHTML = "";
+                if(data.users.length>0){
+                    data.users.forEach((user)=>{
+                    tbody.innerHTML +=`
+                        <tr>
+                            <td>${user.firstName}</td>
+                            <td>${user.lastName}</td>
+                            <td>${user.email}</td>
+                            <td>${user.phone}</td>
+                            <td>
+                                <button class="btn btn-primary" data-user-id="${user.id}">Skatīt</button>
+                            </td>
+                        </tr>    
+                    `;
+                })
+                }    
+               
+            }
+
+        </script>
     </body>
 </html>
