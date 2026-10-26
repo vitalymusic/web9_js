@@ -42,18 +42,18 @@
 
 
         function showProducts(data,element){
+                 element.innerHTML = "";
             data.forEach((item)=>{
                 element.innerHTML+=`
                     <div class="card">
                         <h3>${item.nosaukums}</h3>
-                        <p>${item.cena}</p>
+                        <p>${item.cena.toFixed(2)}</p>
                         <img src="${item.bilde}" width="200px">
-                        <button data-product-id="${item.id}"><Nopirkt>
+                        <button data-product-id="${item.id}">Nopirkt</button>
                     </div>    
                 `
             })
 
-            console.log(data,element)
         }
 
         button.onclick = getProductsFromFile;
