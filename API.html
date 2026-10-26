@@ -4,10 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Darbs ar API</title>
+
+    <style>
+        .products{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap:20px;
+        }
+    </style>
 </head>
 <body>
     <!-- Kas ir JSON -->
+    <button>Parādīt produktus</button>
+    <h1>Produktu saraksts</h1>
 
-    
+    <div class="products"></div>
+
+
+    <script>
+        let button = document.querySelector('button');
+        let productsDIV = document.querySelector('.products');
+
+        function getProductsFromFile(){
+            fetch("./data.json")
+                .then((resp)=>{return resp.json()}) 
+                .then((data)=>{showProducts(data,productsDIV)}) 
+
+        }
+
+        function showProducts(data,element){
+            console.log(data,element)
+        }
+
+        button.onclick = getProductsFromFile;
+    </script>
 </body>
 </html>
