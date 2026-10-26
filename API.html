@@ -25,14 +25,34 @@
         let button = document.querySelector('button');
         let productsDIV = document.querySelector('.products');
 
-        function getProductsFromFile(){
-            fetch("./data.json")
-                .then((resp)=>{return resp.json()}) 
-                .then((data)=>{showProducts(data,productsDIV)}) 
 
+        // function getProductsFromFile(){
+        //     fetch("./data.json")
+        //         .then((resp)=>{return resp.json()}) 
+        //         .then((data)=>{showProducts(data,productsDIV)}) 
+
+        // }
+        
+        async function getProductsFromFile(){
+            resp = await fetch("./data.json");
+            data = await resp.json();
+            showProducts(data,productsDIV);
         }
 
+
+
         function showProducts(data,element){
+            data.forEach((item)=>{
+                element.innerHTML+=`
+                    <div class="card">
+                        <h3>${item.nosaukums}</h3>
+                        <p>${item.cena}</p>
+                        <img src="${item.bilde}" width="200px">
+                        <button data-product-id="${item.id}"><Nopirkt>
+                    </div>    
+                `
+            })
+
             console.log(data,element)
         }
 
