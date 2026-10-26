@@ -3,30 +3,30 @@
         "id":1,
         "nosaukums":"Dators  Intel i5",
         "cena":560,
-        "bilde":""
+        "bilde":"https://www.euronics.lv/UserFiles/Products/Images/473529-719649-medium.avif"
     },
     {
         "id":2,
         "nosaukums":"Monitors DELL 27",
         "cena":180,
-        "bilde":""
+        "bilde":"https://www.euronics.lv/UserFiles/Products/Images/433065-652564-medium.avif"
     },
     {
         "id":3,
         "nosaukums":"Klaviatūra un pele",
         "cena":25,
-        "bilde":""
+        "bilde":"https://dwlf06yfkvg1d.cloudfront.net/images/products/f6/f6836a4bd151bf83da9554e4e33a1ce7dad0736b/large2x.webp"
     },
     {
         "id":4,
         "nosaukums":"Datorgalds ",
         "cena":195.90,
-        "bilde":""
+        "bilde":"https://www.balticdata.lv/Gfx/ProductImages/Large/Product_114580_1.png"
     },
     {
         "id":5,
-        "nosaukums":"Datorkrēsls ",
+        "nosaukums":"Datorkrēsls",
         "cena":175.45,
-        "bilde":""
+        "bilde":"https://www.euronics.lv/UserFiles/Products/Images/266227-404602.avif"
     }
 ]
