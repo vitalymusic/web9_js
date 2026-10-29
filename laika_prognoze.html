@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="lv" data-bs-theme="light">
+    <head>
+        <title>Laika prognoze</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Bootstrap CSS v5.3.8 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+            <h1 class="text-center">Laika prognoze 7 dienām</h1>
+        </header>
+        <main class="container">
+            <div class="search m-auto my-5 w-50 d-flex justify-content-between align-items-center">
+                <div>
+                    <label for="" class="form-label">Ievadi pilsētas nosaukumu:</label>
+                    <input class="form-control mb-4" type="text" name="" id="searchCity" placeholder="Piem. Rīga">
+                </div> 
+                
+                <span>vai</span>
+                
+                <button class="btn btn-primary">Atrast manu tekošo Geo pozīciju</button>  
+            </div>
+
+            <div class="buttons d-flex justify-content-center mb-5">
+                    <button class="btn btn-danger">Parādīt laika prognozi</button>
+            </div>
+
+            <div class="weather">
+                  <table class="table table-bordered">
+                    <tr>
+                        <td>Datums</td>
+                        <td>Temperatūra</td>
+                        <td>Vēja ātrums</td>
+                        <td>Sunset</td>
+                    </tr>
+                  </table>
+
+            </div>
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Bundle (includes Popper) -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
+
+
+        <script>
+            // https://api.open-meteo.com/v1/forecast?latitude=56.946&longitude=24.1059&daily=temperature_2m_max,wind_speed_10m_max,temperature_2m_min,sunset&current=temperature_2m,weather_code,wind_speed_10m
+
+            // https://geocoding-api.open-meteo.com/v1/search
+
+            // https://www.w3schools.com/html/html5_geolocation.asp
+        </script>
+    </body>
+</html>

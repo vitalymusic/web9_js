@@ -136,7 +136,7 @@
                         <div class="card border border-primary" style="width:300px">
                             <img class="img-fluid" src="${item.Poster}" alt="Title" style="height:200px; object-fit:cover"/>
                             <div class="card-body">
-                                <h4 class="card-title text-center " onclick="showCard('${item.imdbID}')">${item.Title}</h4>
+                                <h4 class="card-title text-center" style="cursor:pointer" onclick="showCard('${item.imdbID}')">${item.Title}</h4>
                                 <p class="card-text text-center">${item.Year}</p>
                             </div>
                         </div>
@@ -147,9 +147,20 @@
             }
 
 
-            function showCard(movieID){
-                alert(movieID);
+            async function showCard(movieID){
+                     resp = await fetch(`https://www.omdbapi.com/?apikey=fd98b71a&i=${movieID}`);
+                    let data = await resp.json();
 
+                    console.log(data);
+
+                     document.querySelector('.modal-body').innerHTML=`
+                        <h1>${data.Title}</h1>
+                        <img src="${data.Poster}">
+                        <p>Apraksts: ${data.Plot}</p>
+                        <p>Vērtējums: ${data.imdbRating}</p>
+                        <p>Žanrs: ${data.Genre}</p>
+                     `;
+                     myModal.show();
             }
 
 
