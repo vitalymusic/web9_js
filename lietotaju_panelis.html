@@ -75,10 +75,11 @@
 
     <script>
         let tbody = document.querySelector('tbody');
+        let tfoot = document.querySelector('tfoot');
         getUsers();
         modalBody = document.querySelector('.modal-body');
         async function getUsers() {
-            resp = await fetch('https://dummyjson.com/users');
+            resp = await fetch('https://dummyjson.com/users?limit=300');
             data = await resp.json();
             tbody.innerHTML = "";
             if (data.users.length > 0) {
@@ -96,7 +97,7 @@
                     `;
                 })
             }
-
+        tfoot.innerHTML = `Kopā tabulā ir ${data.limit} lietotāju.`
          userModal();
         }
 
@@ -114,7 +115,7 @@
                     htmlOut = "";
                     for(field in userData){
                         htmlOut+=`
-                            <p>${field} - ${userData[field]}</p>
+                            <p>${field} - <b>${userData[field]}</b></p>
                         `;
                     }
                     modalBody.innerHTML = htmlOut;
@@ -124,7 +125,7 @@
                  
             }
 
-
+           
 
            
 
