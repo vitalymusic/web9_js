@@ -21,6 +21,16 @@
              <h1 class="text-center my-5">Filmu katalogs</h1>
         </header>
         <main class="container">
+            <div class="search my-5">
+                <label for="">Meklēt filmu:</label>
+                <input type="text" name="" id="searchInput">
+                
+            </div>
+            <div class="movies d-flex flex-wrap justify-content-center gap-3">
+
+
+            </div>
+                
 
 
         </main>
@@ -87,12 +97,61 @@
 
          <script>
             const myModal = new bootstrap.Modal(
-                document.getElementById("modalId"),
-                options,
+                document.getElementById("modalId")
             );
         </script>
 
         <script>
+            const moviesDiv = document.querySelector('.movies');
+            const error = "Ieraktiet vismaz 3 simbolus";
+            const searchInput = document.querySelector('#searchInput');
+
+            
+            searchInput.oninput = ()=>{
+                getMovies(searchInput.value);
+            }
+
+            async function getMovies(search){
+                    if(search===undefined || search.length<3){
+                        showMovies(error);
+                        return false;
+                    }
+                    resp = await fetch(`https://www.omdbapi.com/?apikey=fd98b71a&s=${search}`)
+                    let data = await resp.json();
+                    showMovies(data.Search);
+            }
+            function showMovies(data){
+                if(typeof data === 'string'){
+                     moviesDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            ${data}
+                        </div>   
+                     `;
+                     return false;
+                }
+                console.log(data);
+                moviesDiv.innerHTML = "";
+                data.forEach((item,i)=>{
+                    moviesDiv.innerHTML+=`
+                        <div class="card border border-primary" style="width:300px">
+                            <img class="img-fluid" src="${item.Poster}" alt="Title" style="height:200px; object-fit:cover"/>
+                            <div class="card-body">
+                                <h4 class="card-title text-center " onclick="showCard('${item.imdbID}')">${item.Title}</h4>
+                                <p class="card-text text-center">${item.Year}</p>
+                            </div>
+                        </div>
+                    `;
+
+
+                })
+            }
+
+
+            function showCard(movieID){
+                alert(movieID);
+
+            }
+
 
             // https://www.omdbapi.com/?i=tt3896198&apikey=fd98b71a
         </script>
