@@ -82,8 +82,8 @@
 
            let data = {};
 
-            $('cityBtn').click(()=>{
-                $.get(`https://geocoding-api.open-meteo.com/v1/search?name=${$(#searchCity).val()}&count=1&language=lv`,(resp)=>{
+            $('#cityBtn').click(()=>{
+                $.get(`https://geocoding-api.open-meteo.com/v1/search?name=${$('#searchCity').val()}&count=1&language=lv`,(resp)=>{
                        data = {
                         latitude: resp.results[0].latitude,
                         longitude: resp.results[0].longitude,
