@@ -36,7 +36,7 @@
                 
                 <span class="text-uppercase fw-bolder">vai</span>
                 
-                <button class="btn btn-primary">Atrast manu tekošo Geo pozīciju</button>  
+                <button class="btn btn-primary" id="geoPositionBtn">Atrast manu tekošo Geo pozīciju</button>  
             </div>
 
             <div class="buttons d-flex justify-content-center mb-5">
@@ -90,6 +90,16 @@
                        }
                        console.log(data); 
                 })
+            })
+
+
+            $('#geoPositionBtn').click(()=>{
+            if (navigator.geolocation) {
+               let result =  navigator.geolocation.getCurrentPosition();
+            } else {
+            alert("Geolocation is not supported by this browser.");
+            }
+            console.log(result); 
             })
 
         </script>
