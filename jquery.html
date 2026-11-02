@@ -5,19 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- jquery scripts obligāti jāliek head sadaļā -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.slim.min.js" integrity="sha512-1g+lD9RHY4sYTrehMnFuWSqn3GS1xE2nhSSb5a8JS0WYMnvm1iuxpajRACu0C9tmJSL78O7eQw9TUhGUsRFc0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.min.js" integrity="sha512-8LENNbXmzI/Gbj+OwXmqR6V4QaUAw0/porPzy1+dQoJqC0JPHedWoe0DDOTL2uHA5XXJyIsPtiMHH86pVlay6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+   <script src="./lightbox/lightbox.min.js"></script>
+   <link rel="stylesheet" href="./lightbox/lightbox.min.css">
+
+   
 </head>
 <body>
     <h1>Virsraksts</h1>
     <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <button id="btn1">Click me</button>
 
-    <input type="text" name="" id="">
-    <button>Click me</button>
+    <input type="text" name="" id="inp1">
+    <button id="btn2" disabled>Click me</button>
 
-    <button>Ielādēt bildes</button>
+    <button id="btn3">Ielādēt bildes</button>
     <div class="photos">
-        
+
     </div>
 
+
+    <script>
+        // te nāks jquery JS kods
+        
+        $('h1').html("Jauns teksts ar Jquery");
+        
+        $('h1').on("click",(e)=>{
+            $(e.target).css("color","red");
+        })
+
+
+        $('#btn1').on("click",()=>{
+            $('p').text($('h1').text());
+             $('p')
+                .css({
+                    border:"2px solid red",
+                    padding:"10px",
+                    background:"green",
+                    color:"white" 
+                })
+                 $('p').animate({
+                    fontSize:"30px",
+                    height:"400px",
+                    background:"black"
+                },5000,()=>{
+                    $('p').fadeOut();
+                })
+        })
+
+
+        // darbs ar formas elementiem
+
+        $('#inp1').on("input",()=>{
+            if($('#inp1').val().length>3){
+               $('#btn2').attr("disabled",false) 
+            }else{
+             $('#btn2').attr("disabled",true) 
+            }
+        })
+
+
+        $('#btn2').click(()=>{
+            $('body').append(
+                `<h3>${$('#inp1').val()}</h3>`
+            ) ;
+        })
+
+
+
+        // Get vaicājums ar Jquery
+
+
+        const url = "https://picsum.photos/v2/list?limit=100"
+
+
+        $('#btn3').on("click",()=>{
+            $.get(url,(resp)=>{
+                $(resp).each((i, item)=>{
+                    $('.photos').append(`
+                        <a href="${item.download_url}" data-lightbox="roadtrip" data-title="${item.author}">
+                            <img src="${item.download_url}" width="300">
+                        </a>
+                    `)
+                })
+            })
+        })
+
+
+    </script>
 </body>
 </html>
