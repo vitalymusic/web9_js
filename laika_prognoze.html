@@ -40,7 +40,7 @@
             </div>
 
             <div class="buttons d-flex justify-content-center mb-5">
-                    <button class="btn btn-danger disabled">Parādīt laika prognozi</button>
+                    <button class="btn btn-danger disabled" id="showForecastBtn">Parādīt laika prognozi</button>
             </div>
 
             <div class="weather">
@@ -80,7 +80,7 @@
             // searchCity
             // cityBtn
 
-           let data = {};
+           let data = false;
 
             $('#cityBtn').click(()=>{
                 $.get(`https://geocoding-api.open-meteo.com/v1/search?name=${$('#searchCity').val()}&count=1&language=lv`,(resp)=>{
@@ -90,6 +90,10 @@
                        }
                        console.log(data); 
                 })
+
+                if(data){
+                    $('#showForecastBtn').removeClass('disabled');
+                }
             })
 
 
@@ -99,17 +103,31 @@
             } else {
             alert("Geolocation is not supported by this browser.");
             }
+
+            
             })
            
         function success(position) {
              data = {
                         latitude:  position.coords.latitude,
                         longitude: position.coords.longitude,
-                    }
-            console.log(data);        
+                    } 
+
+                     
+             if(data){
+                    $('#showForecastBtn').removeClass('disabled');
+                }
+            
+           console.log(data);          
         }
 
-        
+
+             $('#showForecastBtn').click(()=>{
+
+                
+             })
+
+
         </script>
     </body>
 </html>
