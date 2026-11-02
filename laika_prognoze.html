@@ -95,13 +95,21 @@
 
             $('#geoPositionBtn').click(()=>{
             if (navigator.geolocation) {
-               let result =  navigator.geolocation.getCurrentPosition();
+               let result =  navigator.geolocation.getCurrentPosition(success);
             } else {
             alert("Geolocation is not supported by this browser.");
             }
-            console.log(result); 
             })
+           
+        function success(position) {
+             data = {
+                        latitude:  position.coords.latitude,
+                        longitude: position.coords.longitude,
+                    }
+            console.log(data);        
+        }
 
+        
         </script>
     </body>
 </html>
