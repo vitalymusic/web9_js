@@ -88,12 +88,13 @@
                         latitude: resp.results[0].latitude,
                         longitude: resp.results[0].longitude,
                        }
-                       console.log(data); 
+                    //    console.log(data); 
+                       if(data){
+                            $('#showForecastBtn').removeClass('disabled');
+                        }
                 })
 
-                if(data){
-                    $('#showForecastBtn').removeClass('disabled');
-                }
+                
             })
 
 
@@ -101,7 +102,7 @@
             if (navigator.geolocation) {
                let result =  navigator.geolocation.getCurrentPosition(success);
             } else {
-            alert("Geolocation is not supported by this browser.");
+                alert("Geolocation is not supported by this browser.");
             }
 
             
@@ -118,7 +119,7 @@
                     $('#showForecastBtn').removeClass('disabled');
                 }
             
-           console.log(data);          
+        //    console.log(data);          
         }
 
 
