@@ -141,7 +141,9 @@
                         table.append(`
                             <tr>
                                 <td>${datumaFormats(item)}</td>
-                                <td>${data.temperature_2m_max[i]} </td>
+                                <td>
+                                    ${data.temperature_2m_min[i]} - ${data.temperature_2m_max[i]} 
+                                </td>
                                 <td>${data.wind_speed_10m_max[i]} m/s</td>
                                 <td>${laikaFormats(data.sunset[i])}</td>
                             </tr>    
