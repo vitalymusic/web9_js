@@ -6,6 +6,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        <script src="./moment-with-locales.min.js"></script>
+
         <!-- Bootstrap CSS v5.3.8 -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -44,13 +46,16 @@
             </div>
 
             <div class="weather">
-                  <table class="table table-bordered">
-                    <tr>
-                        <td>Datums</td>
-                        <td>Temperatūra</td>
-                        <td>Vēja ātrums</td>
-                        <td>Sunset</td>
-                    </tr>
+                  <table class="table table-bordered" id="weatherData">
+                    <thead>
+                        <tr>
+                            <td>Datums</td>
+                            <td>Temperatūra</td>
+                            <td>Vēja ātrums</td>
+                            <td>Sunset</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
                   </table>
 
             </div>
@@ -88,24 +93,20 @@
                         latitude: resp.results[0].latitude,
                         longitude: resp.results[0].longitude,
                        }
-                    //    console.log(data); 
+                        
                        if(data){
                             $('#showForecastBtn').removeClass('disabled');
                         }
                 })
-
-                
             })
 
 
             $('#geoPositionBtn').click(()=>{
-            if (navigator.geolocation) {
-               let result =  navigator.geolocation.getCurrentPosition(success);
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-
-            
+                if (navigator.geolocation) {
+                let result =  navigator.geolocation.getCurrentPosition(success);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
             })
            
         function success(position) {
@@ -117,20 +118,42 @@
                      
              if(data){
                     $('#showForecastBtn').removeClass('disabled');
-                }
-            
-        //    console.log(data);          
+                }      
         }
 
 
              $('#showForecastBtn').click(()=>{
                 // Pamēģiniet pierakstīt šo kodu tālāk
+                $.get(`https://api.open-meteo.com/v1/forecast?latitude=${data.latitude}&longitude=${data.longitude}&daily=temperature_2m_max,wind_speed_10m_max,temperature_2m_min,sunset&current=temperature_2m,weather_code,wind_speed_10m&timezone=auto`,(resp)=>{
+                    showData(resp);
+                })
+
 
 
                 
              })
 
-
+             function showData(data){
+                data = data.daily;
+                let table = $('#weatherData tbody');
+                table.empty();
+                data.time.forEach((item,i)=>{
+                        table.append(`
+                            <tr>
+                                <td>${datumaFormats(item)}</td>
+                                <td>${data.temperature_2m_max[i]} </td>
+                                <td>${data.wind_speed_10m_max[i]} m/s</td>
+                                <td>${laikaFormats(data.sunset[i])}</td>
+                            </tr>    
+                                `)
+                })
+             }
+             function laikaFormats(datums){
+                   return moment(datums).locale('lv').format('LT');
+             }
+             function datumaFormats(datums){
+                   return moment(datums).locale('lv').format('L');
+             }
         </script>
     </body>
 </html>
